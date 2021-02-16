@@ -30,14 +30,14 @@ Stage: build
     #rm /etc/timezone
     rm /etc/localtime
     apt-get install -y tzdata
-    
+
     apt-get install -y software-properties-common
     apt-add-repository universe
     apt install -y dialog
     apt install -y python2.7-minimal python-pip git dos2unix
     pip install biopython==1.76
     pip install pysam
-    
+
     mkdir $APPS_HOME
     cd $APPS_HOME
     git clone $APP_GIT
@@ -45,7 +45,7 @@ Stage: build
     git checkout $APP_COMMIT
     DOS_FILES=`find $APP_NAME -type f|grep -v '\.git'|grep -v 'images'`
     for i in $DOS_FILES
-    do 
+    do
         dos2unix $i
     done
 
@@ -70,14 +70,14 @@ Stage: build
         echo "TEST: RUNNING TAMA COLLAPSE HELP: OK"
     else
         echo "TEST: RUNNING TAMA COLLAPSE HELP: NOT OK"
-    fi 
+    fi
 
 
     if [ $EXIT_CODE_TAMA_MERGE -eq 0 ]; then
         echo "TEST: RUNNING TAMA MERGE HELP: OK"
     else
         echo "TEST: RUNNING TAMA MERGE HELP: NOT OK"
-    fi 
+    fi
 
 
     if [ $EXIT_CODE_TAMA_COLLAPSE -eq 0 ]  && [ $EXIT_CODE_TAMA_MERGE -eq 0 ]; then
@@ -109,14 +109,12 @@ Stage: build
     Version commit d39bc7fedffda5b54aeae7337fe92f17ae5c1b03
 
 %help
-    echo "Container was created $BUILD_DATE"
-    This container has been built from the Ubuntu 18.04. 
-    TAMA commit d39bc7fedffda5b54aeae7337fe92f17ae5c1b03 has been installed from github repo (https://github.com/GenomeRIK/tama). 
-    
-    TAMA is composed of two python scripts:  
+    This container has been built from the Ubuntu 18.04.
+    TAMA commit d39bc7fedffda5b54aeae7337fe92f17ae5c1b03 has been installed from github repo (https://github.com/GenomeRIK/tama).
+
+    TAMA is composed of two python scripts:
         - tama_collapse.py (https://github.com/GenomeRIK/tama/wiki/Tama-Collapse)
         - tama-merge.py (https://github.com/GenomeRIK/tama/wiki/Tama-Merge)
 
-    USAGE: 
+    USAGE:
     singularity exec TAMA.sif tama_collapse.py -h
-
