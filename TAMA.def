@@ -54,6 +54,7 @@ Stage: build
     ln -s $APP_NAME/tama_merge.py
 	for i in $(find /apps/tama/tama_go/ -type f -executable)
 	do
+		sed -i '1s|^|#!/usr/bin/env python\n\n|' $i
 		ln -s $i
 	done
 
