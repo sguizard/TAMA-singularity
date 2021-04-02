@@ -52,6 +52,11 @@ Stage: build
     cd /usr/local/bin
     ln -s $APP_NAME/tama_collapse.py
     ln -s $APP_NAME/tama_merge.py
+	for i in $(find /apps/tama/tama_go/ -type f -executable)
+	do
+		ln -s $i
+	done
+
 
     apt purge -y git dos2unix
     apt autoremove -y
