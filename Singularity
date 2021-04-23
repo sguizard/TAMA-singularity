@@ -1,4 +1,4 @@
-Bootstrap: library
+Bootstrap: docker
 From: ubuntu:18.04
 Stage: build
 
@@ -28,7 +28,7 @@ Stage: build
     echo "tzdata tzdata/Zones/Europe select Paris" >> /tmp/preseed.txt
     debconf-set-selections /tmp/preseed.txt
     #rm /etc/timezone
-    rm /etc/localtime
+    #rm /etc/localtime
     apt-get install -y tzdata
 
     apt-get install -y software-properties-common
